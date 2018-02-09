@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+evan:
+  name: Evan Dancer
+  profile_id: ACoAAAs6f-EBgdabsLT7xSoJx1LImZHvJAIvxPg
+  viewed_at: 2018-02-09 13:02:36
+  search_term: engineer
+
+lauren:
+  name: Lauren Materne
+  profile_id: ACoAAAcUg1kBLHDM4N3sdnpl0XKw4BspjrmVgcA
+  viewed_at: 2018-02-09 13:02:36
+  search_term: accountant
