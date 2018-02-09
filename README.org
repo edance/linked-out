@@ -1,0 +1,27 @@
+* Linked Out
+The goal of this project is to simply look at different people's linkedin accounts.
+
+** Constraints
+- Can only view 200 profiles per day. We should go significantly less to start out.
+- We only want to view a profile once every *four* months.
+- We want to dynamically be able to add new search terms for a user.
+
+** Schema
+*** SearchTerms
+| field | type   | purpose        | example             |
+|-------+--------+----------------+---------------------|
+| name  | string | store the term | "software engineer" |
+
+*** Profiles
+| field               | type      | purpose                          | example       |
+|---------------------+-----------+----------------------------------+---------------|
+| name                | string    | full name of the person          | "Evan Dancer" |
+| uid                 | string    | linkedin id for the profile      | ???           |
+| connection_distance | integer   | 1st, 2nd, 3rd degree connections | 3rd           |
+| created_at          | datetime  | when they were viewed            |               |
+| search_term_id      | reference |                                  |               |
+
+** Additional
+
+*** Randomizer
+To not look super sketch, I will want to do some random mouse movements between a lot of actions.
