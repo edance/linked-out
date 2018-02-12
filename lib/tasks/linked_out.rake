@@ -16,8 +16,6 @@ namespace :linked_out do
   end
 
   def search
-    # ENV of how many terms we want to use
-    ENV['DAILY_COUNT'] = 200
     term = SearchTerm.order('RANDOM()').first
     search_by_term(term)
   end
@@ -28,10 +26,15 @@ namespace :linked_out do
     @driver.submit
 
     # Find all the links
+    # Figure out which to visit
+    # Iterate
+    # Go to the next page
     @driver.css('.search-result a').each do |el|
       url = el.attribute('href')
       id = %r{in\/(?<id>.*)\/}.match(url)[:id]
-      Profile.find_by_uid(id)
+      next if Profile.exists?(uid: id)
+      el.click
+      Profile.create(name: 'Evan', uid: id, search_term: term)
     end
 
     # Go to the next page

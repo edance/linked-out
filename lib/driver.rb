@@ -18,6 +18,7 @@ class Driver
   end
 
   def css(selector)
+    @driver.find_elements(:css, selector)
   end
 
   private
