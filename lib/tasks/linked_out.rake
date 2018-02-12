@@ -24,16 +24,14 @@ namespace :linked_out do
 
   def search_by_term(term)
     # Use the term
-    element = @driver.find_element(:css, '#extended-nav-search input')
-    element.clear
-    element.send_keys(term.name)
-    element.send_keys:return
+    @driver.fill('#extended-nav-search input', term.name)
+    @driver.submit
 
     # Find all the links
-    selector = '.search-result a'
-    @driver.find_elements(:css, selector).each do |el|
+    @driver.css('.search-result a').each do |el|
       url = el.attribute('href')
       id = %r{in\/(?<id>.*)\/}.match(url)[:id]
+      Profile.find_by_uid(id)
     end
 
     # Go to the next page

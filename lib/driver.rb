@@ -17,6 +17,9 @@ class Driver
     @driver.action.send_keys(:enter).perform
   end
 
+  def css(selector)
+  end
+
   private
 
   def default_options
