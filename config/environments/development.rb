@@ -26,6 +26,11 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # Attempt to read encrypted secrets from `config/secrets.yml.enc`.
+  # Requires an encryption key in `ENV["RAILS_MASTER_KEY"]` or
+  # `config/secrets.yml.key`.
+  config.read_encrypted_secrets = true
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
