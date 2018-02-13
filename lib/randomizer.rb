@@ -17,11 +17,8 @@ class Randomizer
     @driver.scroll(0, rand(height))
   end
 
-  # Only works in Chrome 53+
   def move_mouse
-    # random height
-    # random width
-    # find element at point (chrome only)
+    # TODO: Create this in javascript
   end
 
   private
@@ -31,16 +28,7 @@ class Randomizer
     rand + 1
   end
 
-  def width
-    @driver.js_eval('return window.innerWidth')
-  end
-
   def height
     @driver.js_eval('return window.innerHeight')
-  end
-
-  def random_element
-    tags = %w(a div p)
-    @driver.css(tags.sample).sample
   end
 end
