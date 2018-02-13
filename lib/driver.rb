@@ -31,6 +31,10 @@ class Driver
     @driver.execute_script("window.scrollTo(#{x}, #{y})")
   end
 
+  def js_eval(str)
+    @driver.execute_script(str)
+  end
+
   def quit
     @driver.quit
   end
