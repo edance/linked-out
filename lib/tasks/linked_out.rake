@@ -16,8 +16,7 @@ namespace :linked_out do
   end
 
   def search
-    term = SearchTerm.order('RANDOM()').first
-    search_by_term(term)
+    search_by_term(SearchTerm.random)
   end
 
   def search_by_term(term)
