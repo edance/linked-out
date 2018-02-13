@@ -28,7 +28,7 @@ class Driver
   end
 
   def scroll(x, y)
-    @driver.execute_script("window.scrollTo(#{x}, #{y})")
+    js_eval("window.scrollTo(#{x}, #{y})")
   end
 
   def js_eval(str)
