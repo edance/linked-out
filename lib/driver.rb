@@ -21,6 +21,10 @@ class Driver
     @driver.find_elements(:css, selector)
   end
 
+  def back
+    @driver.navigate.back
+  end
+
   private
 
   def default_options
