@@ -5,8 +5,9 @@ class Randomizer
   end
 
   def do_stuff
-    actions = %w(rest scroll move_mouse)
+    actions = %w(scroll move_mouse)
     send(actions.sample)
+    rest
   end
 
   def rest
@@ -25,7 +26,7 @@ class Randomizer
 
   # Make all events take more than 1 sec
   def random_interval
-    rand + 1
+    rand + rand(1..5)
   end
 
   def height
