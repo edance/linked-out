@@ -21,22 +21,42 @@ namespace :linked_out do
   end
 
   def search_by_term(term)
-    # Use the term
     @driver.fill('#extended-nav-search input', term.name)
     @driver.submit
+    sleep(2)
 
-    # Find all the links
-    # Figure out which to visit
-    # Iterate
-    # Go to the next page
-    @driver.css('.search-result a').each do |el|
-      url = el.attribute('href')
-      id = %r{in\/(?<id>.*)\/}.match(url)[:id]
-      next if Profile.exists?(uid: id)
-      el.click
-      Profile.create(name: 'Evan', uid: id, search_term: term)
+    max = rand(Rails.application.secrets.max_profiles)
+    page = Pagination.new(@driver)
+    iter(page, term, max)
+  end
+
+  def iter(page, term, count)
+    return if Profile.count >= count
+    sleep(2)
+
+    link = uniq_link
+    if link.nil?
+      page.next
+    else
+      id = find_uid(link)
+      link.click
+      name = @driver.css('h1').first.text
+      Profile.create(name: name, uid: id, search_term: term)
+      sleep(2)
+      @driver.back
+      sleep(2)
     end
+    iter(page, term, count)
+  end
 
-    # Go to the next page
+  def uniq_link
+    @driver.css('.search-result__result-link').find do |link|
+      !Profile.exists?(uid: find_uid(link))
+    end
+  end
+
+  def find_uid(link)
+    url = link.attribute('href')
+    %r{in\/(?<id>.*)\/}.match(url)[:id]
   end
 end

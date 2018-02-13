@@ -1,6 +1,8 @@
 # @class Driver
 # @author Evan Dancer
 class Driver
+  attr_accessor :driver
+
   def initialize
     @driver = Selenium::WebDriver.for(:chrome, options: default_options)
   end
@@ -23,6 +25,14 @@ class Driver
 
   def back
     @driver.navigate.back
+  end
+
+  def scroll(x, y)
+    @driver.execute_script("window.scrollTo(#{x}, #{y})")
+  end
+
+  def quit
+    @driver.quit
   end
 
   private
