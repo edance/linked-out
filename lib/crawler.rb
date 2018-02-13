@@ -32,7 +32,7 @@ class Crawler
   end
 
   def iter(page, count)
-    return if Profile.count >= count
+    return if Profile.today.count >= count
     @randomizer.do_stuff
 
     link = uniq_link
