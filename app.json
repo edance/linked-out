@@ -1,0 +1,31 @@
+{
+  "name": "Linked-Out",
+  "description": "Look at different profiles like all the time",
+  "keywords": [
+    "creepin",
+    "ruby",
+    "fun"
+  ],
+  "website": "https://evandancer.com/linked-out",
+  "repository": "https://github.com/edance/linked-out",
+  "env": {
+    "SECRET_TOKEN": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "image": "heroku/ruby",
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-google-chrome"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-chromedriver"
+    }
+  ]
+}
