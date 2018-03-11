@@ -42,8 +42,10 @@ class Driver
   private
 
   def default_options
-    return {} unless Rails.application.secrets.headless
-    Selenium::WebDriver::Chrome::Options.new(args: ['-headless'])
+    Selenium::WebDriver::Chrome::Options.new(
+      args: Rails.application.secrets.headless ? ['-headless'] : [],
+      binary: ENV['GOOGLE_CHROME_SHIM']
+    )
   end
 
   def find_element(selector)
