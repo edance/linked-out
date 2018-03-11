@@ -1,6 +1,75 @@
 * Linked Out
 The goal of this project is to simply look at different people's linkedin accounts.
 
+** Ruby version
+Currently using ruby 2.3.3.
+
+** System dependencies
+I have only ran this on OSX and Linux (Ubuntu). I do not have a Windows environment.
+
+** Setup
+Let's get it rolling.
+
+*** Install your stuff
+A simple bundle install will do:
+
+#+BEGIN_SRC bash
+bundle install
+#+END_SRC
+
+*** Set your own secrets
+These are where my secrets are stored. You probably don't want that.
+
+#+BEGIN_SRC bash
+rm config/secrets.yml.enc
+rails secrets:setup
+rails secrets:edit
+#+END_SRC
+
+Add this (with your own credentials) to your secrets file:
+
+#+BEGIN_SRC yaml
+shared:
+  email: me@website.com
+  password: password1234
+#+END_SRC
+
+*** Create the database
+Don't need to use rake for db:create anymore! It's the 2000's.
+
+#+BEGIN_SRC bash
+rails db:create
+rails db:migrate
+#+END_SRC
+
+*** Add some search terms
+You will need to add some search terms. I added some basic terms and if you are super lazy, feel free to copy.
+
+If you want to add your own, edit db/seeds.rb. When you are done, run this:
+
+#+BEGIN_SRC bash
+rails db:seed
+#+END_SRC
+
+*** Visit some profiles
+We have reached the point where the magic happens:
+
+#+BEGIN_SRC bash
+rails linked_out:random_search
+#+END_SRC
+
+If you want to search by a specific SearchTerm, you can run:
+
+#+BEGIN_SRC bash
+rails linked_out:search SEARCH_TERM="tom"
+#+END_SRC
+
+** How to run the test suite
+I didn't write any tests. I'm normally better than this.
+
+** Deployment instructions
+Still need to figure this out!
+
 ** Constraints
 - Can only view 200 profiles per day. We should go significantly less to start out.
 - We only want to view a profile once every *four* months.
@@ -25,3 +94,4 @@ The goal of this project is to simply look at different people's linkedin accoun
 
 *** Randomizer
 To not look super sketch, I will want to do some random mouse movements between a lot of actions.
+
