@@ -17,3 +17,7 @@
 
 # Ignore encrypted secrets key file.
 config/secrets.yml.key
+
+# Mac keeps creating these files
+.DS_Store
+*.DS_Store
